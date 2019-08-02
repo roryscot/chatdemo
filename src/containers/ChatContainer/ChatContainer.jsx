@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ChatInput } from "components";
+import { ChatInput, ChatItem } from "components";
 import INITIAL_STATE from "initialState";
 import { timeFormatter } from "utils";
 
@@ -21,10 +21,8 @@ export default class ChatContainer extends Component {
     };
 
     ws.onmessage = evt => {
-      console.log("MESSAGE", evt.data);
       const data = JSON.parse(evt.data);
       this.setState(data);
-      console.warn("state", this.state);
     };
 
     ws.onclose = () => {
@@ -59,11 +57,25 @@ export default class ChatContainer extends Component {
     }
   };
 
+  // TODO: store users as well as participants
   render() {
     const { participatns } = this.props;
     const { messages, currentMessage } = this.state;
     return (
       <div>
+        {messages
+          ? messages.map((m, i) => (
+              <ChatItem
+                message={m}
+                key={"message_" + i}
+                ws={this.state.ws}
+                username={
+                  participatns && participatns.find(u => u.id === m.owner).name
+                }
+                authorization={this.state.user}
+              />
+            ))
+          : "No messages to display"}
         <ChatInput
           onSubmitMessage={this.submitMessage}
           onChange={this.onChange}

@@ -11,5 +11,15 @@ export default {
       content: ""
     },
     messages: []
+  },
+  editMessage: {
+    modal: false,
+    message: {
+      owner: "",
+      id: "",
+      content: "",
+      createdAt: "",
+      updatedAt: ""
+    }
   }
 };
