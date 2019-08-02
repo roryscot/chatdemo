@@ -1,2 +1,2 @@
 export { timeFormatter } from "./timeFormatter";
-export { parseLink } from "./parseLink";
+export { parseLink, extractURLs } from "./parseLink";

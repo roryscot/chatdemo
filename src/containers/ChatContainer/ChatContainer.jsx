@@ -75,6 +75,7 @@ export default class ChatContainer extends Component {
               />
             ))
           : "No messages to display"}
+
         <ChatInput
           onSubmitMessage={this.submitMessage}
           onChange={this.onChange}
