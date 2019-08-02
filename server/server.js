@@ -6,6 +6,7 @@ const wss = new WebSocket.Server({ port: 8080 });
 wss.on("connection", function connection(ws) {
   ws.on("message", function incoming(data) {
     const parsed = JSON.parse(data);
+    console.log("Here", parsed);
     if (
       typeof parsed.message === "object" &&
       parsed.participant === undefined

@@ -1,6 +1,7 @@
 import React from "react";
 import INITIAL_STATE from "initialState";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Col } from "reactstrap";
+import { ChatContainer } from "containers";
 import classnames from "classnames";
 
 import "./style.css";
@@ -47,7 +48,9 @@ export default class App extends React.Component {
             <Col>Participants Container</Col>
           </TabPane>
           <TabPane tabId="2">
-            <Col>Chat Container</Col>
+            <Col>
+              <ChatContainer />
+            </Col>
           </TabPane>
         </TabContent>
       </div>
