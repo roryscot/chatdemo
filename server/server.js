@@ -7,9 +7,14 @@ const wss = new WebSocket.Server({ port: 8080 });
 API = new API();
 
 wss.on("connection", function connection(ws) {
+  // just for fun
+  if (API.state.initialized === false) {
+    API.state.initialized = true;
+    API.generateTestData();
+  }
   wss.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
-      let data = JSON.stringify({ messages: API.state.messages });
+      let data = JSON.stringify(API.state);
       client.send(data);
     }
   });

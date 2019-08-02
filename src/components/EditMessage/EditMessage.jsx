@@ -4,6 +4,7 @@ import { ChatInput } from "components";
 import { timeFormatter } from "utils";
 import INITIAL_STATE from "initialState";
 import "./style.css";
+
 export default class EditMessage extends Component {
   state = INITIAL_STATE.editMessage;
 

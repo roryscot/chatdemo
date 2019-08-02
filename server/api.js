@@ -1,7 +1,8 @@
 class Websocket_API {
   state = {
     participants: [],
-    messages: []
+    messages: [],
+    initialized: false
   };
 
   addMessage = data => {
@@ -33,7 +34,7 @@ class Websocket_API {
   };
 
   generateTestData() {
-    const time = new Date(Date.now()).toLocaleTimeString().slice(0, -3);
+    let time = new Date(Date.now()).toLocaleTimeString().slice(0, -6);
     this.state = {
       participants: [
         { id: "u000", name: "ChatBot" },

@@ -1,16 +1,16 @@
 export default {
   tabContainer: {
     activeTab: "2",
-    participants: []
+    participants: [],
+    messages: [],
+    ws: new WebSocket(process.env.REACT_APP_WEBSOCKET_URL)
   },
   chatContainer: {
     // TODO: get UserID
     user: "u001",
-    ws: new WebSocket(process.env.REACT_APP_WEBSOCKET_URL),
     currentMessage: {
       content: ""
-    },
-    messages: []
+    }
   },
   editMessage: {
     modal: false,
