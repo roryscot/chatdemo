@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { ChatInput } from "components";
 import INITIAL_STATE from "initialState";
+import { timeFormatter } from "utils";
+
 import "./style.css";
-import { Col, Form, FormGroup, Input } from "reactstrap";
 
 export default class ChatContainer extends Component {
   state = INITIAL_STATE.chatContainer;
@@ -35,29 +36,40 @@ export default class ChatContainer extends Component {
     };
   }
 
+  submitMessage = e => {
+    e.preventDefault();
+    const { ws, user, currentMessage } = this.state;
+    const time = timeFormatter(new Date(Date.now()));
+    const message = {
+      owner: user,
+      content: currentMessage.content,
+      createdAt: time,
+      updatedAt: time
+    };
+    const data = { message: message, method: "POST" };
+    try {
+      this.setState({
+        currentMessage: {
+          content: ""
+        }
+      });
+      ws.send(JSON.stringify(data));
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   render() {
+    const { participatns } = this.props;
     const { messages, currentMessage } = this.state;
     return (
       <div>
-        <Form
-          onSubmit={event => {
-            event.preventDefault();
-            this.state.ws.send(JSON.stringify(this.state.currentMessage));
-          }}
-        >
-          <FormGroup row>
-            <Col>
-              <Input
-                type="text"
-                name="userMessage"
-                id="userMessage"
-                placeholder="Message"
-                value={currentMessage.content}
-                onChange={this.onChange}
-              />
-            </Col>
-          </FormGroup>
-        </Form>
+        <ChatInput
+          onSubmitMessage={this.submitMessage}
+          onChange={this.onChange}
+          currentMessage={currentMessage}
+          id={"principle-chat"}
+        />
       </div>
     );
   }
