@@ -1,6 +1,23 @@
+#container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .tab-bg {
+  z-index: 3;
+  position: sticky;
+  top: 3rem;
   background-color: lightgrey;
 }
 .tab {
   padding: 1rem;
+}
+
+.tab-content {
+  position: relative;
+  overflow-y: auto;
+  flex-shrink: 50;
+  flex-basis: 100%;
+  height: calc(90% - 3rem);
 }

@@ -10,7 +10,8 @@ export default {
     user: "u001",
     currentMessage: {
       content: ""
-    }
+    },
+    emojiPicker: false
   },
   editMessage: {
     modal: false,

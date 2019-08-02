@@ -40,7 +40,7 @@ export default class App extends React.Component {
   render() {
     const { participants } = this.state;
     return (
-      <div>
+      <div id="container">
         <Nav tabs className={"tab-bg"}>
           <NavItem>
             <NavLink
@@ -63,13 +63,13 @@ export default class App extends React.Component {
             </NavLink>
           </NavItem>
         </Nav>
-        <TabContent activeTab={this.state.activeTab}>
+        <TabContent className={"tab-content"} activeTab={this.state.activeTab}>
           <TabPane tabId="1">
             <Col>
               <ParticipantsContainer participants={participants} />
             </Col>
           </TabPane>
-          <TabPane tabId="2">
+          <TabPane className={"tab-content"} tabId="2">
             <Col>
               <ChatContainer
                 participants={participants}

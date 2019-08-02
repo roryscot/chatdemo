@@ -5,6 +5,9 @@ import { timeFormatter } from "utils";
 
 import "./style.css";
 
+import JSEMOJI from "emoji-js";
+const jsemoji = new JSEMOJI();
+
 export default class ChatContainer extends Component {
   state = INITIAL_STATE.chatContainer;
 
@@ -38,6 +41,21 @@ export default class ChatContainer extends Component {
     }
   };
 
+  handleEmojiPick = (code, emoji) => {
+    let message = { ...this.state.currentMessage };
+    let img = jsemoji.replace_colons(`:${emoji.name}:`);
+    message.content = this.state.currentMessage.content + img;
+
+    this.setState({
+      currentMessage: message,
+      emojiPicker: false
+    });
+  };
+
+  toggleEmojiPicker = () => {
+    this.setState({ emojiPicker: !this.state.emojiPicker });
+  };
+
   // TODO: store users as well as participants
   render() {
     const { messages, participants } = this.props;
@@ -61,6 +79,9 @@ export default class ChatContainer extends Component {
           onSubmitMessage={this.submitMessage}
           onChange={this.onChange}
           currentMessage={currentMessage}
+          handleEmojiPick={this.handleEmojiPick}
+          toggleEmojiPicker={this.toggleEmojiPicker}
+          emojiPicker={this.state.emojiPicker}
           id={"principle-chat"}
         />
       </div>

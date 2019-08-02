@@ -2,8 +2,11 @@ body {
   font-family: sans-serif, Consolas, monaco, "Ubuntu Mono", courier, monospace !important;
   color: darkslategrey;
 }
+
 #title {
   text-align: center;
   background-color: lightgrey;
   padding: 1rem;
+  position: sticky;
+  top: 0;
 }

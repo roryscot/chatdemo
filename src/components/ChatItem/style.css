@@ -9,6 +9,7 @@ a#headlines h1 {
 a#headlines h1:hover {
   transform: scale(1.5);
 }
+
 .chat-item {
   margin: 1rem;
 }
