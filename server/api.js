@@ -24,6 +24,10 @@ class Websocket_API {
     }
   };
 
+  deleteMessage = id => {
+    this.state.messages = this.state.messages.filter(m => m.id !== id);
+  };
+
   addParticipant = newParticipant => {
     this.state.participants = [...this.state.participants, newParticipant];
   };

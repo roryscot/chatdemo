@@ -40,14 +40,24 @@ export default class EditMessage extends Component {
 
   deleteMessage = e => {
     if (this.checkPermissions()) {
-      console.log("TODO: Delete");
+      const { ws } = this.props;
+      const message = { ...this.state.message };
+      const time = timeFormatter(new Date(Date.now()));
+      message.updatedAt = time;
+      const data = { method: "DELETE", message: message };
+      try {
+        ws.send(JSON.stringify(data));
+
+        this.setState(INITIAL_STATE.editMessage);
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
   checkPermissions() {
     const { message } = this.state;
     if (this.props.authorization === message.owner) {
-      console.error("Authorized", message.id);
       return true;
     } else {
       alert("You are not authorized to edit this message");
