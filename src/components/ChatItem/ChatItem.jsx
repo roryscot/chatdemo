@@ -1,4 +1,5 @@
 import React from "react";
+import { EditMessage } from "components";
 import { parseLink } from "utils";
 
 import "./style.css";
@@ -17,6 +18,9 @@ export const ChatItem = ({ message, ws, username, authorization }) => {
           __html: parseLink(message.content)
         }}
       />
+      {message.owner === authorization ? (
+        <EditMessage message={message} ws={ws} authorization={authorization} />
+      ) : null}
     </div>
   );
 };
