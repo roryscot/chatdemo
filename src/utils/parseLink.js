@@ -11,6 +11,11 @@ export const validURL = str => {
   return !!pattern.test(str);
 };
 
+export const formatUrl = str => {
+  let reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+  return reg.test(str) ? str : "https://www." + str;
+};
+
 export const extractURLs = str => {
   return str
     .split(" ")
@@ -18,7 +23,8 @@ export const extractURLs = str => {
     .filter(s => typeof s === "string");
 };
 
+// TODO: format before returning
 export const parseLink = content => {
-  const reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+  let reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
   return content.replace(reg, "<a href='$1$2'>$1$2</a>");
 };
