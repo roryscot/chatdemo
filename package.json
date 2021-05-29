@@ -11,7 +11,7 @@
     "react-scripts": "3.0.1",
     "react-tiny-link": "^1.0.2",
     "reactstrap": "^8.0.1",
-    "ws": "^7.1.1",
+    "ws": "^7.4.6",
     "yarn": "^1.17.3"
   },
   "scripts": {
